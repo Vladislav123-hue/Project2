@@ -1,0 +1,30 @@
+#calculator-buttons-numbers {
+    display: flex;
+    flex-direction: column;
+}
+.btn {
+    transform: scale(2.5);
+    margin: 20px;
+    border-radius: 40%;
+}
+.op-btn {
+    transform: scale(2.5);
+    margin: 20px;
+    border-radius: 40%;
+}
+#calculator-screen {
+    background-color: greenyellow;
+    height: 70px;
+    width: 500px;
+    
+}
+#calculator-body {
+    background-color: brown;
+    border-radius: 10%;
+    height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+}
