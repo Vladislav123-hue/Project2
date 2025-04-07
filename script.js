@@ -58,8 +58,7 @@ function addNumbToCollection(value) {
         
     if (value != "=") 
     {
-
-    
+        
         if (createdNumber != "") {
             numberCollection.push(createdNumber);
             console.log("number " + createdNumber + " added to the collection");
@@ -75,10 +74,15 @@ function addNumbToCollection(value) {
         console.log("Operation sign " + value + " added to the collection");
         createdNumber = "";
         operationSignSelected = false;
-        screenContent.innerText = "";
+        
         console.log("number " + createdNumber + "removed from the screen");
         console.log("list equal " + numberCollection);
         }
+        let screenText = "";
+        for (i = 0; i<numberCollection.length; i++) {
+            screenText += numberCollection[i];
+        }
+        screenContent.innerText = screenText;
     }
         if (value == "=") {
             numberCollection.push(createdNumber);
