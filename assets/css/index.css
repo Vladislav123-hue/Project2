@@ -21,6 +21,8 @@
     background-color: greenyellow;
     height: 70px;
     width: 500px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 250%;
     
 }
 #calculator-body {
@@ -31,5 +33,4 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  
 }
