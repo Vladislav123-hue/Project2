@@ -5,22 +5,27 @@ let screenContent = document.getElementById("calculator-screen");
 let numberCollection = [];
 let createdNumber = "";
 let operationButtonsList = [];
-let hasBeenInUse = false;
+let actionButtonsList = []
 let finalResult = "";
 operationButtons.forEach(button => {
     operationButtonsList.push(button.innerText);
 })
+actionButtons.forEach(button => {
+    actionButtonsList.push(button.innerText);
+})
+
+
 buttons.forEach(button => {
     button.addEventListener("click", function () {
         let value = button.innerText; // Select the content of the button
-            console.log("Numeral recognized")
-            numberInput(value); // Sending in a method     
+        console.log("Numeral recognized")
+        numberInput(value); // Sending in a method     
     });
 });
 
 operationButtons.forEach(button => {
     button.addEventListener("click", function () {
-        operationSignSelected = true; // Operation sign selected 
+
         let value = button.innerText;
         console.log("Operation sign " + value + " recognized");
         addNumbToCollection(value);
@@ -31,6 +36,8 @@ actionButtons.forEach(button => {
     button.addEventListener("click", function () {
         let value = button.innerText;
         addNumbToCollection(value);
+
+
     });
 });
 
@@ -45,52 +52,56 @@ function operationSignInput(value) {
     console.log(value, " operationSign pressed");
 }
 
-
-
-
-function creatingNumber (value) {
-createdNumber += value;
-screenContent.innerText += value;
+function creatingNumber(value) {
+    createdNumber += value;
+    screenContent.innerText += value;
 }
 
 
 function addNumbToCollection(value) {
-        
-    if (value != "=") 
-    {
-        
+
+    if (!actionButtonsList.includes(value)) {
+        console.log("no action buttons pressed");
         if (createdNumber != "") {
             numberCollection.push(createdNumber);
             console.log("number " + createdNumber + " added to the collection");
         }
-        
+
         if (operationButtonsList.includes(numberCollection[numberCollection.length - 1])) {
             numberCollection.length = numberCollection.length - 1;
             console.log("Operation sign repeated, list length " + numberCollection);
         }
-        if (!operationButtonsList.includes(numberCollection[numberCollection.length - 1]))
-        {
-        numberCollection.push(value);
-        console.log("Operation sign " + value + " added to the collection");
-        createdNumber = "";
-        operationSignSelected = false;
-        
-        console.log("number " + createdNumber + "removed from the screen");
-        console.log("list equal " + numberCollection);
+        if (!operationButtonsList.includes(numberCollection[numberCollection.length - 1])) {
+            numberCollection.push(value);
+            console.log("Operation sign " + value + " added to the collection");
+            createdNumber = "";
+
+            console.log("list equal " + numberCollection);
         }
         let screenText = "";
-        for (i = 0; i<numberCollection.length; i++) {
+        for (i = 0; i < numberCollection.length; i++) {
             screenText += numberCollection[i];
         }
         screenContent.innerText = screenText;
     }
-        if (value == "=") {
-            numberCollection.push(createdNumber);
-            console.log("list equal " + numberCollection);
-            calculate(numberCollection);
-        }
-        
-      
+    if (value == "=") {
+        numberCollection.push(createdNumber);
+        console.log("list equal " + numberCollection);
+        calculate(numberCollection);
+    }
+    if (value == "c") {
+        numberCollection.length = 0;
+        screenContent.innerText = '';
+        createdNumber = "";
+        console.log("list cleaned. List equals " + numberCollection);
+    }
+    if (value == "--") {
+        createdNumber = createdNumber.slice(0,-1);
+        console.log("Element removed. List equals " + numberCollection);
+
+    }
+
+
 }
 function calculate(numberCollection) {
     let stringResult = "";
@@ -98,10 +109,10 @@ function calculate(numberCollection) {
         stringResult += numberCollection[i];
     }
     let result = Function("return " + stringResult)();
-console.log(result); 
-screenContent.innerText = result;
-createdNumber = result;
-numberCollection.length = 0;
-console.log("List cleaned");
+    console.log(result);
+    screenContent.innerText = result;
+    createdNumber = result;
+    numberCollection.length = 0;
+    console.log("List cleaned");
 
 }
