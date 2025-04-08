@@ -54,7 +54,6 @@ function operationSignInput(value) {
 
 function creatingNumber(value) {
     createdNumber += value;
-    screenContent.innerText += value;
 }
 
 
@@ -78,11 +77,6 @@ function addNumbToCollection(value) {
 
             console.log("list equal " + numberCollection);
         }
-        let screenText = "";
-        for (i = 0; i < numberCollection.length; i++) {
-            screenText += numberCollection[i];
-        }
-        screenContent.innerText = screenText;
     }
     if (value == "=") {
         numberCollection.push(createdNumber);
@@ -91,7 +85,6 @@ function addNumbToCollection(value) {
     }
     if (value == "c") {
         numberCollection.length = 0;
-        screenContent.innerText = '';
         createdNumber = "";
         console.log("list cleaned. List equals " + numberCollection);
     }
@@ -110,7 +103,6 @@ function calculate(numberCollection) {
     }
     let result = Function("return " + stringResult)();
     console.log(result);
-    screenContent.innerText = result;
     createdNumber = result;
     numberCollection.length = 0;
     console.log("List cleaned");
