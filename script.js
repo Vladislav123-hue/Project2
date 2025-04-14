@@ -109,9 +109,9 @@ if (value == "c") {
 
 function calculate(numberCollection) {
     let stringResult = "";
-    numberCollection = [...new Set(numberCollection)];
-    for (i = 0; i < numberCollection.length; i++) {
-        stringResult += numberCollection[i];
+    numberCollectionNoDublicates = [...new Set(numberCollection)];
+    for (i = 0; i < numberCollectionNoDublicates.length; i++) {
+        stringResult += numberCollectionNoDublicates[i];
     }
     let result = Function("return " + stringResult)();
     console.log(result);
