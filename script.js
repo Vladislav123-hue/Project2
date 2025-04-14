@@ -1,103 +1,115 @@
-const buttons = document.querySelectorAll(".btn");
-const operationButtons = document.querySelectorAll(".op-btn")
-const actionButtons = document.querySelectorAll(".ac-btn")
-let screenContent = document.getElementById("calculator-screen");
-let numberCollection = [];
-let createdNumber = "";
-let operationButtonsList = [];
-let actionButtonsList = []
-let finalResult = "";
+const buttons = document.querySelectorAll(".btn"); //all the buttons
+const operationButtons = document.querySelectorAll(".op-btn") //operation buttons +-/*
+const actionButtons = document.querySelectorAll(".ac-btn") // actionButtons =c--
+const openingBracket = document.getElementById("open-bracket");
+const closingBracket = document.getElementById("close-bracket");
+const comma = document.getElementById("comma");
+let numberCollection = []; // collection of numbers created after pressing an op button
+let createdNumber = ""; // a number being created and pushed in the collection after op sign is pressed
+let operationButtonsList = []; // string list of operation signs (easier to operate with)
+let actionButtonsList = [] // string list of action signs (easier to operate with)
+let bracketsActive = false;
+
 operationButtons.forEach(button => {
-    operationButtonsList.push(button.innerText);
+    operationButtonsList.push(button.innerText); // contains operation sign string values 
 })
 actionButtons.forEach(button => {
-    actionButtonsList.push(button.innerText);
+    actionButtonsList.push(button.innerText); // contains action sign string values 
 })
-
 
 buttons.forEach(button => {
     button.addEventListener("click", function () {
         let value = button.innerText; // Select the content of the button
-        console.log("Numeral recognized")
-        numberInput(value); // Sending in a method     
+        console.log(value, " numeral pressed");
+        creatingNumber(value);
     });
 });
+
+comma.addEventListener("click", function () { //comma
+    console.log("comma pressed");
+    createdNumber += ".";
+})
 
 operationButtons.forEach(button => {
     button.addEventListener("click", function () {
 
-        let value = button.innerText;
+        let value = button.innerText; // Select the content of the button
         console.log("Operation sign " + value + " recognized");
-        addNumbToCollection(value);
+        savingNumberAfterPressingOpButtons(value);
     });
 });
+
 
 actionButtons.forEach(button => {
     button.addEventListener("click", function () {
-        let value = button.innerText;
-        addNumbToCollection(value);
-
-
+        let value = button.innerText; // Select the content of the button
+        executeTypedData(value);
     });
 });
 
+openingBracket.addEventListener("click", function () {
+    console.log(bracketsActive + " bracket pairs active");
+    numberCollection.push("(");
+    console.log("numberCollection equals " + numberCollection);
+})
+
+closingBracket.addEventListener("click", function () {
+    console.log(bracketsActive + " bracket pairs complete");
+    numberCollection.push(createdNumber);
+    createdNumber = 0;
+    numberCollection.push(")");
+    console.log("numberCollection equals " + numberCollection);
+})
 
 
-function numberInput(value) {
-    console.log(value, " numeral pressed");
-    creatingNumber(value);
-}
-
-function operationSignInput(value) {
-    console.log(value, " operationSign pressed");
-}
 
 function creatingNumber(value) {
-    createdNumber += value;
+    createdNumber += value;  //the methode that creates a number from pressed numerals
 }
 
 
-function addNumbToCollection(value) {
 
-    if (!actionButtonsList.includes(value)) {
-        console.log("no action buttons pressed");
-        if (createdNumber != "") {
-            numberCollection.push(createdNumber);
-            console.log("number " + createdNumber + " added to the collection");
-        }
 
-        if (operationButtonsList.includes(numberCollection[numberCollection.length - 1])) {
-            numberCollection.length = numberCollection.length - 1;
-            console.log("Operation sign repeated, list length " + numberCollection);
-        }
-        if (!operationButtonsList.includes(numberCollection[numberCollection.length - 1])) {
-            numberCollection.push(value);
-            console.log("Operation sign " + value + " added to the collection");
-            createdNumber = "";
 
+function savingNumberAfterPressingOpButtons(value) {
+
+    numberCollection.push(createdNumber);
+    console.log(createdNumber + " added to numberCollection");
+    numberCollection.push(value);
+    console.log("Operation sign " + value + " added to the numberCollection, which equals now  " + numberCollection);
+    createdNumber = "";
+
+}
+
+
+
+
+
+function executeTypedData(value) {
+
+    if (value == "=") {
+        if (numberCollection[numberCollection.length - 1] == ")") {
+            //numberCollection.push(createdNumber);
             console.log("list equal " + numberCollection);
         }
-    }
-    if (value == "=") {
-        numberCollection.push(createdNumber);
-        console.log("list equal " + numberCollection);
-        calculate(numberCollection);
-    }
-    if (value == "c") {
-        numberCollection.length = 0;
+        else if (numberCollection[numberCollection.length - 1] != ")") {
+            numberCollection.push(createdNumber);
+            console.log("list equal " + numberCollection);
+        }
         createdNumber = "";
-        console.log("list cleaned. List equals " + numberCollection);
-    }
-    if (value == "--") {
-        createdNumber = createdNumber.slice(0,-1);
-        console.log("Element removed. List equals " + numberCollection);
+        calculate(numberCollection);
 
     }
-
-
 }
+if (value == "c") {
+    numberCollection.length = 0;
+    createdNumber = "";
+    console.log("list cleaned. List equals " + numberCollection);
+}
+
 function calculate(numberCollection) {
     let stringResult = "";
+    numberCollection = [...new Set(numberCollection)];
     for (i = 0; i < numberCollection.length; i++) {
         stringResult += numberCollection[i];
     }

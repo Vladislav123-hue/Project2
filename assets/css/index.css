@@ -2,21 +2,13 @@
     display: flex;
     flex-direction: column;
 }
-.btn {
+.btn, .op-btn, .ac-btn, .b-btn, #comma {
     transform: scale(2.5);
     margin: 20px;
     border-radius: 40%;
 }
-.op-btn {
-    transform: scale(2.5);
-    margin: 20px;
-    border-radius: 40%;
-}
-.ac-btn {
-    transform: scale(2.5);
-    margin: 20px;
-    border-radius: 40%;
-}
+
+
 #null {
     display: flex;
     justify-content: center;
