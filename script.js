@@ -88,14 +88,9 @@ function savingNumberAfterPressingOpButtons(value) {
 function executeTypedData(value) {
 
     if (value == "=") {
-        if (numberCollection[numberCollection.length - 1] == ")") {
-            //numberCollection.push(createdNumber);
-            console.log("list equal " + numberCollection);
-        }
-        else if (numberCollection[numberCollection.length - 1] != ")") {
-            numberCollection.push(createdNumber);
-            console.log("list equal " + numberCollection);
-        }
+
+        numberCollection.push(createdNumber);
+        console.log("list equal " + numberCollection);
         createdNumber = "";
         calculate(numberCollection);
 
@@ -109,14 +104,17 @@ if (value == "c") {
 
 function calculate(numberCollection) {
     let stringResult = "";
-    numberCollectionNoDublicates = [...new Set(numberCollection)];
-    for (i = 0; i < numberCollectionNoDublicates.length; i++) {
-        stringResult += numberCollectionNoDublicates[i];
+    for (i = 0; i < numberCollection.length; i++) {
+        stringResult += numberCollection[i];
     }
-    let result = Function("return " + stringResult)();
-    console.log(result);
-    createdNumber = result;
-    numberCollection.length = 0;
-    console.log("List cleaned");
+    try {
+        let result = Function("return " + stringResult)();
+        console.log(result);
+        createdNumber = result;
+        numberCollection.length = 0;
+        console.log("List cleaned");
+    } catch (error) {
+        console.error("Expression wrong:", error);
+    }
 
 }
