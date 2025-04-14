@@ -56,7 +56,7 @@ openingBracket.addEventListener("click", function () {
 closingBracket.addEventListener("click", function () {
     console.log(bracketsActive + " bracket pairs complete");
     numberCollection.push(createdNumber);
-    createdNumber = 0;
+    createdNumber = "";
     numberCollection.push(")");
     console.log("numberCollection equals " + numberCollection);
 })
