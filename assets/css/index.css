@@ -12,6 +12,7 @@
     transform: scale(2.5);
     margin: 20px;
     border-radius: 40%;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -28,6 +29,7 @@
     font-size: 250%;
     width: 100%;
     border-radius: 10%;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 #calculator-body {
@@ -39,6 +41,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 4px 4px 10px rgb(172, 54, 54);
 }
 
 
