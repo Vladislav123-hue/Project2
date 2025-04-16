@@ -106,7 +106,7 @@ function executeTypedData(value) {
 
         }
         else if (createdNumber == "") {
-            numberCollection[numberCollection.length - 1] = numberCollection[numberCollection.length - 1].slice(0, -1)
+            numberCollection = numberCollection.slice(0, -1)
             console.log("element erased, list equals " + numberCollection)
         }
 
