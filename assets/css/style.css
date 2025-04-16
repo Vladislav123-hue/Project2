@@ -19,7 +19,7 @@ main {
     flex-direction: column;
 }
 body {
-    background-image: url('/assets/images/f.jpeg');
+    background-image: url('../..//assets/images/f.jpeg');
 }
 .btn,
 .op-btn,
