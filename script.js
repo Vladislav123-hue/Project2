@@ -7,14 +7,18 @@ const comma = document.getElementById("comma");
 let numberCollection = []; // collection of numbers created after pressing an op button
 let createdNumber = ""; // a number being created and pushed in the collection after op sign is pressed
 let operationButtonsList = []; // string list of operation signs (easier to operate with)
-let actionButtonsList = [] // string list of action signs (easier to operate with)
 let bracketsActive = false;
 
 operationButtons.forEach(button => {
     operationButtonsList.push(button.innerText); // contains operation sign string values 
 })
 actionButtons.forEach(button => {
-    actionButtonsList.push(button.innerText); // contains action sign string values 
+    button.addEventListener("click", function () {
+
+        let value = button.innerText; // Select the content of the button
+        console.log("Action sign " + value + " recognized");
+        executeTypedData(value);
+    });
 })
 
 buttons.forEach(button => {
@@ -36,14 +40,6 @@ operationButtons.forEach(button => {
         let value = button.innerText; // Select the content of the button
         console.log("Operation sign " + value + " recognized");
         savingNumberAfterPressingOpButtons(value);
-    });
-});
-
-
-actionButtons.forEach(button => {
-    button.addEventListener("click", function () {
-        let value = button.innerText; // Select the content of the button
-        executeTypedData(value);
     });
 });
 
@@ -95,11 +91,26 @@ function executeTypedData(value) {
         calculate(numberCollection);
 
     }
-}
-if (value == "c") {
-    numberCollection.length = 0;
-    createdNumber = "";
-    console.log("list cleaned. List equals " + numberCollection);
+
+    if (value == "c") {
+        numberCollection.length = 0;
+        createdNumber = "";
+        console.log("list cleaned. List equals " + numberCollection);
+    }
+
+    if (value == "--") {
+        if (createdNumber != "") {
+            createdNumber = createdNumber.slice(0, -1)
+            console.log("element erased and equals " + createdNumber)
+            console.log("numberCollection equals " + numberCollection)
+
+        }
+        else if (createdNumber == "") {
+            numberCollection = numberCollection.slice(0, -1)
+            console.log("element erased, list equals " + numberCollection)
+        }
+
+    }
 }
 
 function calculate(numberCollection) {
