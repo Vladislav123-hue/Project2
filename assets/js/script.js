@@ -9,6 +9,7 @@ let numberCollection = []; // collection of numbers created after pressing an op
 let createdNumber = ""; // a number being created and pushed in the collection after op sign is pressed
 let operationButtonsList = []; // string list of operation signs (easier to operate with)
 let bracketsActive = false;
+let wrongSyntax = false;
 
 operationButtons.forEach(button => {
     operationButtonsList.push(button.innerText); // contains operation sign string values 
@@ -69,7 +70,10 @@ closingBracket.addEventListener("click", function () {
 })
 
 function showInfoOnScreen() {
-    screen.innerText = numberCollection.join("") + createdNumber;
+    if (wrongSyntax == true) {
+        screen.innerText = numberCollection.join("") + createdNumber;
+    }
+    else screen.innerText = numberCollection.join("") + createdNumber;
 }
 
 function creatingNumber(value) {
@@ -135,6 +139,9 @@ function calculate(numberCollection) {
         console.log("List cleaned");
     } catch (error) {
         console.error("Expression wrong:", error);
+        createdNumber = "Wrong syntax, press C";
+        numberCollection.length = 0;
+        numberCollection.push(createdNumber)
     }
 
 }
