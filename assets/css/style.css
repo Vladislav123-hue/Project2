@@ -3,7 +3,18 @@
     display: flex;
     flex-direction: column;
 }
-
+#introduction {
+    border: 1px solid black ;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    border-radius: 35%;
+}
+main {
+    display: flex;
+    flex-direction: column;
+}
 .btn,
 .op-btn,
 .ac-btn,
@@ -44,7 +55,10 @@
     box-shadow: 4px 4px 10px rgb(172, 54, 54);
 }
 
-
+#calculator {
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width: 767px) {
     #calculator-body {
