@@ -49,6 +49,11 @@ operationButtons.forEach(button => {
 
 openingBracket.addEventListener("click", function () {
     console.log(bracketsActive + " bracket pairs active");
+    if (createdNumber != "") {
+        numberCollection.push(createdNumber);
+        createdNumber = "";
+        numberCollection.push("*");
+    }
     numberCollection.push("(");
     console.log("numberCollection equals " + numberCollection);
     showInfoOnScreen();
@@ -71,10 +76,6 @@ function creatingNumber(value) {
     createdNumber += value;  //the methode that creates a number from pressed numerals
 }
 
-
-
-
-
 function savingNumberAfterPressingOpButtons(value) {
 
     numberCollection.push(createdNumber);
@@ -84,10 +85,6 @@ function savingNumberAfterPressingOpButtons(value) {
     createdNumber = "";
 
 }
-
-
-
-
 
 function executeTypedData(value) {
 
