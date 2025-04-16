@@ -4,6 +4,7 @@ const actionButtons = document.querySelectorAll(".ac-btn") // actionButtons =c--
 const openingBracket = document.getElementById("open-bracket");
 const closingBracket = document.getElementById("close-bracket");
 const comma = document.getElementById("comma");
+const screen = document.getElementById("calculator-screen");
 let numberCollection = []; // collection of numbers created after pressing an op button
 let createdNumber = ""; // a number being created and pushed in the collection after op sign is pressed
 let operationButtonsList = []; // string list of operation signs (easier to operate with)
@@ -26,6 +27,7 @@ buttons.forEach(button => {
         let value = button.innerText; // Select the content of the button
         console.log(value, " numeral pressed");
         creatingNumber(value);
+        showInfoOnScreen();
     });
 });
 
@@ -40,6 +42,7 @@ operationButtons.forEach(button => {
         let value = button.innerText; // Select the content of the button
         console.log("Operation sign " + value + " recognized");
         savingNumberAfterPressingOpButtons(value);
+        showInfoOnScreen();
     });
 });
 
@@ -47,6 +50,7 @@ openingBracket.addEventListener("click", function () {
     console.log(bracketsActive + " bracket pairs active");
     numberCollection.push("(");
     console.log("numberCollection equals " + numberCollection);
+    showInfoOnScreen();
 })
 
 closingBracket.addEventListener("click", function () {
@@ -55,9 +59,12 @@ closingBracket.addEventListener("click", function () {
     createdNumber = "";
     numberCollection.push(")");
     console.log("numberCollection equals " + numberCollection);
+    showInfoOnScreen();
 })
 
-
+function showInfoOnScreen() {
+    screen.innerText = numberCollection.join("") + createdNumber;
+}
 
 function creatingNumber(value) {
     createdNumber += value;  //the methode that creates a number from pressed numerals
@@ -111,6 +118,7 @@ function executeTypedData(value) {
         }
 
     }
+    showInfoOnScreen();
 }
 
 function calculate(numberCollection) {
