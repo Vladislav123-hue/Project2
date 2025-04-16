@@ -122,8 +122,10 @@ function calculate(numberCollection) {
         let result = Function("return " + stringResult)();
         console.log(result);
         createdNumber = result;
-        createdNumber = "";
         numberCollection.length = 0;
+        numberCollection.push(createdNumber)
+        createdNumber = "";
+ 
         console.log("List cleaned");
     } catch (error) {
         console.error("Expression wrong:", error);
