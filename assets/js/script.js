@@ -12,7 +12,7 @@ let bracketsActive = false;
 let wrongSyntax = false;
 const squared = document.getElementById("squared");
 const squaredRoot = document.getElementById("squared-root");
-
+let result = "";
 
 
 operationButtons.forEach(button => {
@@ -44,15 +44,30 @@ comma.addEventListener("click", function () { //comma
 
 squared.addEventListener("click", function () { //squared
     console.log("squared pressed");
-    let createdNumberInt = parseInt(createdNumber) ** 2;
-    createdNumber = createdNumberInt.toString();
+    if (numberCollection.length == 1) {
+        createdNumber = result
+        numberCollection.length = 0;
+        createdNumber = parseInt(createdNumber) ** 2;
+    }
+    else {
+        let createdNumberInt = parseInt(createdNumber) ** 2;
+        createdNumber = createdNumberInt.toString();
+    }
+    
     showInfoOnScreen();  
 })
 
 squaredRoot.addEventListener("click", function () { //squared
     console.log("squared pressed");
+    if (numberCollection.length == 1) {
+        createdNumber = result
+        numberCollection.length = 0;
+        createdNumber =  Math.sqrt(parseInt(createdNumber));
+    }
+    else {
     let createdNumberInt = Math.sqrt(parseInt(createdNumber));
     createdNumber = createdNumberInt.toString();
+    }
     showInfoOnScreen();  
 })
 
@@ -147,7 +162,7 @@ function calculate(numberCollection) {
         stringResult += numberCollection[i];
     }
     try {
-        let result = Function("return " + stringResult)();
+        result = Function("return " + stringResult)();
         console.log(result);
         createdNumber = result;
         numberCollection.length = 0;
