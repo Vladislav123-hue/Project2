@@ -10,6 +10,7 @@ let createdNumber = ""; // a number being created and pushed in the collection a
 let operationButtonsList = []; // string list of operation signs (easier to operate with)
 let bracketsActive = false;
 let wrongSyntax = false;
+const srf = document.getElementById("squared-root");
 
 operationButtons.forEach(button => {
     operationButtonsList.push(button.innerText); // contains operation sign string values 
@@ -36,6 +37,13 @@ comma.addEventListener("click", function () { //comma
     console.log("comma pressed");
     createdNumber += ".";
     showInfoOnScreen();
+})
+
+srf.addEventListener("click", function () { //squared root
+    console.log("square root pressed");
+    let createdNumberInt = parseInt(createdNumber) ** 2;
+    createdNumber = createdNumberInt.toString();
+    showInfoOnScreen();  
 })
 
 operationButtons.forEach(button => {

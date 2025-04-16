@@ -25,6 +25,7 @@ body {
 .op-btn,
 .ac-btn,
 .b-btn,
+.srf-btn,
 #comma {
     transform: scale(2.5);
     margin: 20px;
@@ -32,6 +33,9 @@ body {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
 }
 
+#all-buttons {
+    display: flex;
+}
 
 #null {
     display: flex;
