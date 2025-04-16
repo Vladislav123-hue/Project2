@@ -9,11 +9,17 @@
     display: flex;
     justify-content: center;
     margin: 25px;
+    margin-left: 250px;
+    margin-right: 250px;
     border-radius: 35%;
+    
 }
 main {
     display: flex;
     flex-direction: column;
+}
+body {
+    background-image: url('/assets/images/f.jpeg');
 }
 .btn,
 .op-btn,
@@ -64,10 +70,20 @@ main {
     #calculator-body {
         width: 350px;
     }
+    #introduction {
+        margin-left: 150px;
+        margin-right: 150px;
+
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     #calculator-body {
         width: 400px;
+    }
+    #introduction {
+        margin-left: 200px;
+        margin-right: 200px;
+
     }
 }
