@@ -34,6 +34,7 @@ buttons.forEach(button => {
 comma.addEventListener("click", function () { //comma
     console.log("comma pressed");
     createdNumber += ".";
+    showInfoOnScreen();
 })
 
 operationButtons.forEach(button => {
