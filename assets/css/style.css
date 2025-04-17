@@ -18,6 +18,14 @@ main {
     display: flex;
     flex-direction: column;
 }
+#text {
+    padding: 20px;
+}
+#about {
+    border: 1px solid gray;
+    border-radius: 20%;
+    background-color: rgb(198, 198, 198);
+}
 body {
     background-image: url('../..//assets/images/f.jpeg');
 }
@@ -68,6 +76,12 @@ body {
 #calculator {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#info-calc {
+    display: flex;
 }
 
 @media screen and (max-width: 767px) {
