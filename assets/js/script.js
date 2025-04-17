@@ -1,180 +1,154 @@
-const buttons = document.querySelectorAll(".btn"); //all the buttons
-const operationButtons = document.querySelectorAll(".op-btn") //operation buttons +-/*
-const actionButtons = document.querySelectorAll(".ac-btn") // actionButtons =c--
+const buttons = document.querySelectorAll(".btn");
+const operationButtons = document.querySelectorAll(".op-btn");
+const actionButtons = document.querySelectorAll(".ac-btn");
 const openingBracket = document.getElementById("open-bracket");
 const closingBracket = document.getElementById("close-bracket");
 const comma = document.getElementById("comma");
 const screen = document.getElementById("calculator-screen");
-let numberCollection = []; // collection of numbers created after pressing an op button
-let createdNumber = ""; // a number being created and pushed in the collection after op sign is pressed
-let operationButtonsList = []; // string list of operation signs (easier to operate with)
-let bracketsActive = false;
-let wrongSyntax = false;
 const squared = document.getElementById("squared");
 const squaredRoot = document.getElementById("squared-root");
+
+// ========== STATE ==========
+let numberCollection = [];
+let createdNumber = "";
 let result = "";
+let wrongSyntax = false;
+let bracketsActive = false;
 
+const operationButtonsList = Array.from(operationButtons).map(btn => btn.innerText);
 
-operationButtons.forEach(button => {
-    operationButtonsList.push(button.innerText); // contains operation sign string values 
-})
-actionButtons.forEach(button => {
-    button.addEventListener("click", function () {
+// ========== BUTTON EVENTS ==========
 
-        let value = button.innerText; // Select the content of the button
-        console.log("Action sign " + value + " recognized");
-        executeTypedData(value);
-    });
-})
-
+// Number buttons
 buttons.forEach(button => {
-    button.addEventListener("click", function () {
-        let value = button.innerText; // Select the content of the button
-        console.log(value, " numeral pressed");
-        creatingNumber(value);
-        showInfoOnScreen();
-    });
+  button.addEventListener("click", () => {
+    const value = button.innerText;
+    console.log(value, "numeral pressed");
+    createdNumber += value;
+    showInfoOnScreen();
+  });
 });
 
-comma.addEventListener("click", function () { //comma
-    console.log("comma pressed");
+// Operation buttons
+operationButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const value = button.innerText;
+    console.log("Operation sign", value, "recognized");
+    pushCreatedNumber();
+    numberCollection.push(value);
+    console.log("Current expression:", numberCollection);
+    showInfoOnScreen();
+  });
+});
+
+// Action buttons (=, C, backspace)
+actionButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const value = button.innerText;
+    console.log("Action sign", value, "recognized");
+    handleAction(value);
+    showInfoOnScreen();
+  });
+});
+
+// Comma (decimal point)
+comma.addEventListener("click", () => {
+  console.log("comma pressed");
+  if (!createdNumber.includes(".")) {
     createdNumber += ".";
     showInfoOnScreen();
-})
-
-squared.addEventListener("click", function () { //squared
-    console.log("squared pressed");
-    if (numberCollection.length == 1) {
-        createdNumber = result
-        numberCollection.length = 0;
-        createdNumber = parseInt(createdNumber) ** 2;
-    }
-    else {
-        let createdNumberInt = parseInt(createdNumber) ** 2;
-        createdNumber = createdNumberInt.toString();
-    }
-    
-    showInfoOnScreen();  
-})
-
-squaredRoot.addEventListener("click", function () { //squared
-    console.log("squared pressed");
-    if (numberCollection.length == 1) {
-        createdNumber = result
-        numberCollection.length = 0;
-        createdNumber =  Math.sqrt(parseInt(createdNumber));
-    }
-    else {
-    let createdNumberInt = Math.sqrt(parseInt(createdNumber));
-    createdNumber = createdNumberInt.toString();
-    }
-    showInfoOnScreen();  
-})
-
-operationButtons.forEach(button => {
-    button.addEventListener("click", function () {
-
-        let value = button.innerText; // Select the content of the button
-        console.log("Operation sign " + value + " recognized");
-        savingNumberAfterPressingOpButtons(value);
-        showInfoOnScreen();
-    });
+  }
 });
 
-openingBracket.addEventListener("click", function () {
-    console.log(bracketsActive + " bracket pairs active");
-    if (createdNumber != "") {
-        numberCollection.push(createdNumber);
-        createdNumber = "";
-        numberCollection.push("*");
-    }
-    numberCollection.push("(");
-    console.log("numberCollection equals " + numberCollection);
-    showInfoOnScreen();
-})
+// Squared
+squared.addEventListener("click", () => {
+  console.log("squared pressed");
+  applyMathOperation(val => val ** 2);
+});
 
-closingBracket.addEventListener("click", function () {
-    console.log(bracketsActive + " bracket pairs complete");
-    numberCollection.push(createdNumber);
-    createdNumber = "";
-    numberCollection.push(")");
-    console.log("numberCollection equals " + numberCollection);
-    showInfoOnScreen();
-})
+// Square Root
+squaredRoot.addEventListener("click", () => {
+  console.log("square root pressed");
+  applyMathOperation(val => Math.sqrt(val));
+});
+
+// Opening Bracket
+openingBracket.addEventListener("click", () => {
+  if (createdNumber !== "") {
+    pushCreatedNumber();
+    numberCollection.push("*");
+  }
+  numberCollection.push("(");
+  console.log("Opening bracket added:", numberCollection);
+  showInfoOnScreen();
+});
+
+// Closing Bracket
+closingBracket.addEventListener("click", () => {
+  pushCreatedNumber();
+  numberCollection.push(")");
+  console.log("Closing bracket added:", numberCollection);
+  showInfoOnScreen();
+});
+
+// ========== CORE FUNCTIONS ==========
 
 function showInfoOnScreen() {
-    if (wrongSyntax == true) {
-        screen.innerText = numberCollection.join("") + createdNumber;
-    }
-    else screen.innerText = numberCollection.join("") + createdNumber;
+  screen.innerText = numberCollection.join("") + createdNumber;
 }
 
-function creatingNumber(value) {
-    createdNumber += value;  //the methode that creates a number from pressed numerals
-}
-
-function savingNumberAfterPressingOpButtons(value) {
-
+function pushCreatedNumber() {
+  if (createdNumber !== "") {
     numberCollection.push(createdNumber);
-    console.log(createdNumber + " added to numberCollection");
-    numberCollection.push(value);
-    console.log("Operation sign " + value + " added to the numberCollection, which equals now  " + numberCollection);
+    console.log("Number", createdNumber, "added to expression");
     createdNumber = "";
-
+  }
 }
 
-function executeTypedData(value) {
-
-    if (value == "=") {
-
-        numberCollection.push(createdNumber);
-        console.log("list equal " + numberCollection);
-        createdNumber = "";
-        calculate(numberCollection);
-
-    }
-
-    if (value == "c") {
-        numberCollection.length = 0;
-        createdNumber = "";
-        console.log("list cleaned. List equals " + numberCollection);
-    }
-
-    if (value == "--") {
-        if (createdNumber != "") {
-            createdNumber = createdNumber.slice(0, -1)
-            console.log("element erased and equals " + createdNumber)
-            console.log("numberCollection equals " + numberCollection)
-
-        }
-        else if (createdNumber == "") {
-            numberCollection = numberCollection.slice(0, -1)
-            console.log("element erased, list equals " + numberCollection)
-        }
-
-    }
-    showInfoOnScreen();
+function handleAction(value) {
+  switch (value) {
+    case "=":
+      pushCreatedNumber();
+      calculate();
+      break;
+    case "c":
+      numberCollection = [];
+      createdNumber = "";
+      wrongSyntax = false;
+      break;
+    case "--":
+      if (createdNumber) {
+        createdNumber = createdNumber.slice(0, -1);
+      } else {
+        numberCollection.pop();
+      }
+      break;
+  }
 }
 
-function calculate(numberCollection) {
-    let stringResult = "";
-    for (i = 0; i < numberCollection.length; i++) {
-        stringResult += numberCollection[i];
-    }
-    try {
-        result = Function("return " + stringResult)();
-        console.log(result);
-        createdNumber = result;
-        numberCollection.length = 0;
-        numberCollection.push(createdNumber)
-        createdNumber = "";
- 
-        console.log("List cleaned");
-    } catch (error) {
-        console.error("Expression wrong:", error);
-        createdNumber = "Wrong syntax, press C";
-        numberCollection.length = 0;
-        numberCollection.push(createdNumber)
-    }
+function calculate() {
+  const expression = numberCollection.join("");
+  try {
+    result = Function(`return ${expression}`)();
+    console.log("Result:", result);
+    numberCollection = [result.toString()];
+    createdNumber = "";
+    wrongSyntax = false;
+  } catch (error) {
+    console.error("Syntax error:", error);
+    wrongSyntax = true;
+    numberCollection = [];
+    createdNumber = "Error (press C)";
+  }
+}
 
+function applyMathOperation(operation) {
+  let value = createdNumber || result || "0";
+  let numericValue = parseFloat(value);
+  if (isNaN(numericValue)) return;
+
+  let calculated = operation(numericValue);
+  createdNumber = calculated.toString();
+  numberCollection = [];
+  showInfoOnScreen();
 }
