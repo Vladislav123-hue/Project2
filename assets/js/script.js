@@ -23,7 +23,6 @@ const operationButtonsList = Array.from(operationButtons).map(btn => btn.innerTe
 buttons.forEach(button => {
   button.addEventListener("click", () => {
     const value = button.innerText;
-    console.log(value, "numeral pressed");
     createdNumber += value;
     showInfoOnScreen();
   });
@@ -33,10 +32,8 @@ buttons.forEach(button => {
 operationButtons.forEach(button => {
   button.addEventListener("click", () => {
     const value = button.innerText;
-    console.log("Operation sign", value, "recognized");
     pushCreatedNumber();
     numberCollection.push(value);
-    console.log("Current expression:", numberCollection);
     showInfoOnScreen();
   });
 });
@@ -45,7 +42,6 @@ operationButtons.forEach(button => {
 actionButtons.forEach(button => {
   button.addEventListener("click", () => {
     const value = button.innerText;
-    console.log("Action sign", value, "recognized");
     handleAction(value);
     showInfoOnScreen();
   });
@@ -62,13 +58,11 @@ comma.addEventListener("click", () => {
 
 // Squared
 squared.addEventListener("click", () => {
-  console.log("squared pressed");
   applyMathOperation(val => val ** 2);
 });
 
 // Square Root
 squaredRoot.addEventListener("click", () => {
-  console.log("square root pressed");
   applyMathOperation(val => Math.sqrt(val));
 });
 
@@ -79,7 +73,6 @@ openingBracket.addEventListener("click", () => {
     numberCollection.push("*");
   }
   numberCollection.push("(");
-  console.log("Opening bracket added:", numberCollection);
   showInfoOnScreen();
 });
 
@@ -87,7 +80,6 @@ openingBracket.addEventListener("click", () => {
 closingBracket.addEventListener("click", () => {
   pushCreatedNumber();
   numberCollection.push(")");
-  console.log("Closing bracket added:", numberCollection);
   showInfoOnScreen();
 });
 
@@ -100,7 +92,6 @@ function showInfoOnScreen() {
 function pushCreatedNumber() {
   if (createdNumber !== "") {
     numberCollection.push(createdNumber);
-    console.log("Number", createdNumber, "added to expression");
     createdNumber = "";
   }
 }
@@ -130,12 +121,10 @@ function calculate() {
   const expression = numberCollection.join("");
   try {
     result = Function(`return ${expression}`)();
-    console.log("Result:", result);
     numberCollection = [result.toString()];
     createdNumber = "";
     wrongSyntax = false;
   } catch (error) {
-    console.error("Syntax error:", error);
     wrongSyntax = true;
     numberCollection = [];
     createdNumber = "Error (press C)";
