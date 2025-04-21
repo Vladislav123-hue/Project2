@@ -138,6 +138,5 @@ function applyMathOperation(operation) {
 
   let calculated = operation(numericValue);
   createdNumber = calculated.toString();
-  numberCollection = [];
   showInfoOnScreen();
 }
