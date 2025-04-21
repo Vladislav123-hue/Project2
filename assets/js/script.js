@@ -121,8 +121,8 @@ function calculate() {
   const expression = numberCollection.join("");
   try {
     result = Function(`return ${expression}`)();
-    numberCollection = [result.toString()];
-    createdNumber = "";
+    numberCollection = [];
+    createdNumber = [result.toString()];
     wrongSyntax = false;
   } catch (error) {
     wrongSyntax = true;
@@ -132,7 +132,7 @@ function calculate() {
 }
 
 function applyMathOperation(operation) {
-  let value = createdNumber || result || "0";
+  let value = createdNumber;
   let numericValue = parseFloat(value);
   if (isNaN(numericValue)) return;
 
