@@ -69,7 +69,7 @@ squaredRoot.addEventListener("click", () => {
 
 // Opening bracket button
 openingBracket.addEventListener("click", () => {
-  if (createdNumber !== "") {
+  if (createdNumber !== "" || parseFloat(numberCollection[numberCollection.length -1])) {
     pushCreatedNumber();       // Add number to collection if one exists
     numberCollection.push("*"); // Implicit multiplication before bracket
   }
