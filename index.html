@@ -2,18 +2,27 @@
 <html lang="en">
 
 <head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
     <title>Document</title>
 </head>
 
 <body>
     <main>
+        <!-- Introduction header -->
         <section id="introduction">
             <h1>SIMPLE MATH</h1>
         </section>
+
+        <!-- Main container: info section + calculator -->
         <section id="info-calc">
+
+            <!-- About section: describes the calculator -->
             <section id="about">
                 <div id="text">
                     <h2>About Our Calculator</h2>
@@ -23,8 +32,7 @@
 
                     <p>With this calculator, you can:</p>
                     <ul>
-                        <li>Perform basic mathematical operations (addition, subtraction, multiplication, and division).
-                        </li>
+                        <li>Perform basic mathematical operations (addition, subtraction, multiplication, and division).</li>
                         <li>Clear the screen and start a new calculation with the <strong>C</strong> button.</li>
                         <li>Get calculation results quickly and accurately.</li>
                     </ul>
@@ -36,13 +44,21 @@
                     <p>Try it out now!</p>
                 </div>
             </section>
+
+            <!-- Calculator UI section -->
             <section id="calculator">
                 <div id="calculator-body">
-                    <div id="calculator-screen">
 
-                    </div>
+                    <!-- Screen to display numbers and results -->
+                    <div id="calculator-screen"></div>
+
+                    <!-- Container for all calculator buttons -->
                     <div id="all-buttons">
+
+                        <!-- Basic calculator functions (numbers, operators, actions) -->
                         <div id="basic-functions">
+
+                            <!-- Number buttons 0-9 -->
                             <div id="calculator-buttons-numbers">
                                 <div id="numbers">
                                     <div id="all-but-null">
@@ -62,15 +78,20 @@
                                             <button class="btn" id="btn-9">9</button>
                                         </div>
                                     </div>
+
+                                    <!-- Zero button -->
                                     <div id="null">
                                         <div class="rows">
-                                            <button class="btn" id="btn-9">0</button>
+                                            <button class="btn" id="btn-0">0</button>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
+                            <!-- Decimal point -->
                             <button id="comma">.</button>
+
+                            <!-- Operation buttons: +, -, *, / -->
                             <div id="calculator-buttons-operations">
                                 <div class="operation-buttons-rows">
                                     <button class="op-btn" id="+">+</button>
@@ -78,21 +99,23 @@
                                     <button class="op-btn" id="x">*</button>
                                     <button class="op-btn" id=":">/</button>
                                 </div>
-
                             </div>
 
+                            <!-- Brackets for expressions -->
                             <div id="calculator-buttons-brackets">
                                 <button class="b-btn" id="open-bracket">(</button>
                                 <button class="b-btn" id="close-bracket">)</button>
                             </div>
 
+                            <!-- Action buttons: equals, clear, backspace -->
                             <div id="calculator-buttons-actions">
                                 <button class="ac-btn" id="=">=</button>
                                 <button class="ac-btn" id="c">c</button>
                                 <button class="ac-btn" id="--">--</button>
                             </div>
-
                         </div>
+
+                        <!-- Scientific functions: square, square root -->
                         <div id="scientific-functions">
                             <button id="squared" class="scientific-functions">
                                 X^2
@@ -101,16 +124,13 @@
                                 √X
                             </button>
                         </div>
-
                     </div>
                 </div>
-
             </section>
         </section>
-
-
-
     </main>
+
+    <!-- Link to JavaScript functionality -->
     <script src="assets/js/script.js"></script>
 </body>
 

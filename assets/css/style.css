@@ -1,67 +1,81 @@
-
+/* Layout for number buttons section */
 #calculator-buttons-numbers {
     display: flex;
     flex-direction: column;
 }
+
+/* Introduction section style */
 #introduction {
-    border: 1px solid black ;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4); /* Shadow for depth */
     display: flex;
     justify-content: center;
     margin: 25px;
     margin-left: 250px;
     margin-right: 250px;
-    border-radius: 35%;
-    
+    border-radius: 35%; /* Circular rounded corners */
 }
+
+/* Main layout direction */
 main {
     display: flex;
     flex-direction: column;
 }
+
+/* Padding around text in about section */
 #text {
     padding: 20px;
 }
+
+/* Styling the "About" section */
 #about {
     border: 1px solid gray;
     border-radius: 20%;
     background-color: rgb(198, 198, 198);
     margin-right: 50px;
 }
+
+/* Background image for the whole page */
 body {
     background-image: url('../..//assets/images/f.jpeg');
 }
+
+/* Common styles for all calculator buttons */
 .btn,
 .op-btn,
 .ac-btn,
 .b-btn,
 .scientific-functions,
 #comma {
-    transform: scale(2.5);
+    transform: scale(2.5); /* Make buttons larger */
     margin: 20px;
     border-radius: 40%;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4); /* Button shadow */
 }
 
+/* Container for all calculator buttons */
 #all-buttons {
     display: flex;
 }
 
+/* Center the 0 button */
 #null {
     display: flex;
     justify-content: center;
 }
 
+/* Display screen of the calculator */
 #calculator-screen {
     background-color: greenyellow;
     height: 70px;
-    width: 50px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font */
     font-size: 250%;
     width: 100%;
     border-radius: 10%;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
 }
 
+/* Calculator's outer container */
 #calculator-body {
     background-color: brown;
     border-radius: 10%;
@@ -74,6 +88,7 @@ body {
     box-shadow: 4px 4px 10px rgb(172, 54, 54);
 }
 
+/* Calculator positioning inside the page */
 #calculator {
     display: flex;
     justify-content: center;
@@ -82,37 +97,43 @@ body {
     margin-left: 50px;
 }
 
+/* Container that holds both about and calculator sections */
 #info-calc {
     display: flex;
 }
 
+/* Responsive styles for smaller screens (phones) */
 @media screen and (max-width: 767px) {
     #calculator-body {
         width: 350px;
     }
+
     #introduction {
         margin-left: 150px;
         margin-right: 150px;
-
     }
+
     #info-calc {
         display: inline;
     }
+
     #about, #calculator {
         margin-left: 0px;
         margin-right: 0px;
     }
 }
 
+/* Responsive styles for tablets and small desktops */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     #calculator-body {
         width: 400px;
     }
+
     #introduction {
         margin-left: 200px;
         margin-right: 200px;
-
     }
+
     #about, #calculator {
         margin-left: 20px;
         margin-right: 20px;
