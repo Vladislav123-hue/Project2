@@ -25,6 +25,7 @@ main {
     border: 1px solid gray;
     border-radius: 20%;
     background-color: rgb(198, 198, 198);
+    margin-right: 50px;
 }
 body {
     background-image: url('../..//assets/images/f.jpeg');
@@ -78,6 +79,7 @@ body {
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 50px;
 }
 
 #info-calc {
@@ -93,6 +95,13 @@ body {
         margin-right: 150px;
 
     }
+    #info-calc {
+        display: inline;
+    }
+    #about, #calculator {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -103,5 +112,9 @@ body {
         margin-left: 200px;
         margin-right: 200px;
 
+    }
+    #about, #calculator {
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
