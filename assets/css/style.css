@@ -113,6 +113,8 @@ body {
         margin-right: 150px;
         padding-left: 50px;
         padding-right: 50px;
+        border: none;
+        box-shadow: none
     }
 
     #info-calc {
