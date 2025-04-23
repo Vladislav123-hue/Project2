@@ -107,3 +107,59 @@ TrainBrain website directly from the GitHub repository.
 🎯 **SIMPLE MATH** is a great example of how to apply JavaScript to build practical, minimal tools that are both functional and fun to use.
 
 ## Testing
+**Methods**
+
+**Validation**: 
+
+HTML has been validated with the W3C HTML5 Validator.
+
+![Alt text](/assets/images/validationHtml.png)
+
+CSS has been validated with the W3C CSS Validator and auto-prefixed using **CSSAutoprefixer**.
+
+![Alt text](/assets/images/cssValidator.png)
+
+Accessibility was tested with DevTools Lighthouse:
+
+![Alt text](/assets/images/accessibility.png)
+
+**General Testing**
+
+● I tested it in different browsers Safari, Google Chrome.
+
+● I made sure the website's responsiveness
+
+● All the website's sections are readable and easy to understand
+
+## Bugs
+
+**Fixed bugs**
+
+● Fixed expression evaluation errors: Initially, some mathematical expressions with brackets or multiple operators caused syntax errors. Logic was added to handle brackets and ensure valid input structure before calculation.
+
+● Decimal point handling: The decimal (comma) button allowed multiple dots in a single number, which caused invalid calculations. A condition was added to prevent more than one dot in the same number.
+
+● Backspace bug: Pressing backspace when no number was being entered caused unexpected behavior or crashes. This was fixed by checking if createdNumber exists before slicing.
+
+**Unfixed bugs**
+
+None
+
+## Deployment
+
+● The site was developed to GitHub pages. The steps to deploy are as follows.
+
+● In the Github repository navigate to the settings tab.
+
+● From the source section drop-down menu, select the Master Branch.
+
+● Once the master branch has been selected, the page provided the link to the completed
+website.
+
+The Link is here [Simple Math](https://vladislav123-hue.github.io/Project2/)
+
+## Credits
+
+**Media**
+
+The background picture has been taken from the following website: [Math](https://career.uconn.edu/blog/2019/09/11/math-careers-in-unlikely-places/)
