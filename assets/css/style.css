@@ -111,6 +111,8 @@ body {
     #introduction {
         margin-left: 150px;
         margin-right: 150px;
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
     #info-calc {
